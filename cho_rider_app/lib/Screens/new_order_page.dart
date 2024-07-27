@@ -50,7 +50,21 @@ class NewOrderPage extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      final snackBar = SnackBar(
+                                        content: const Text(
+                                          "Order received",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                              color: Colors.green),
+                                        ),
+                                        action: SnackBarAction(
+                                            label: "", onPressed: () {}),
+                                      );
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
+                                    },
                                     label: const Text(
                                       "Accept Order",
                                       style: TextStyle(color: Colors.white),
@@ -67,7 +81,21 @@ class NewOrderPage extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      final snackBar = SnackBar(
+                                        content: const Text(
+                                          "Order rejected",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                              color: Colors.red),
+                                        ),
+                                        action: SnackBarAction(
+                                            label: "", onPressed: () {}),
+                                      );
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
+                                    },
                                     label: const Text(
                                       "Reject Order",
                                       style: TextStyle(color: Colors.white),

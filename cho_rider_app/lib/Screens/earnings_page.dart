@@ -1,3 +1,4 @@
+import 'package:cho_rider_app/Screens/transactions_page.dart';
 import 'package:flutter/material.dart';
 
 class EarningsPage extends StatelessWidget {
@@ -46,8 +47,19 @@ class EarningsPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-                onPressed: () {},
-                child: const Text("View all deliveries history")),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const TransactionsPage(),
+                  ));
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.yellow.shade600,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12))),
+                child: const Text(
+                  "View all deliveries history",
+                  style: TextStyle(color: Colors.black),
+                )),
           )
         ],
       ),
