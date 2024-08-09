@@ -2,10 +2,12 @@ import 'package:cho_rider_app/Screens/earnings_page.dart';
 import 'package:cho_rider_app/Screens/finished_order_page.dart';
 import 'package:cho_rider_app/Screens/new_order_page.dart';
 import 'package:cho_rider_app/Screens/profile_page.dart';
+import 'package:cho_rider_app/models/rider.dart';
 import 'package:flutter/material.dart';
 
 class RiderPage extends StatelessWidget {
-  const RiderPage({super.key});
+  final Rider rider;
+  const RiderPage({super.key, required this.rider});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class RiderPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.yellow.shade600,
-          title: const Text('Hello Sylvester'),
+          title: Text('Hello ${rider.name}'),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
