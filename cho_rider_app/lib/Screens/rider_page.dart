@@ -21,15 +21,10 @@ class RiderPage extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: CircleAvatar(
-                minRadius: 81,
-                child: Icon(
-                  Icons.person,
-                  size: 72,
-                ),
-              ),
+                  minRadius: 81, child: Image.network(rider.profilePictureUrl)),
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width,
