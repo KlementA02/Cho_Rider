@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api, avoid_print, use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cho_rider_app/Screens/rider_page.dart';
@@ -17,37 +15,6 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
   final _riderService = RiderService();
   bool _isLoading = false;
-
-  Future<void> _login() async {
-    setState(() {
-      _isLoading = true;
-    });
-
-    print('Attempting to login with username: ${_nameController.text}');
-
-    final rider = await _riderService.login(
-      _nameController.text,
-      _passwordController.text,
-    );
-
-    setState(() {
-      _isLoading = false;
-    });
-
-    if (rider != null) {
-      print('Login successful, Rider ID: ${rider.id}');
-      await _riderService.saveRiderId(rider.id);
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => RiderPage(rider: rider),
-        ),
-      );
-    } else {
-      print('Login failed');
-      _showErrorDialog('Login failed. Please check your credentials.');
-    }
-  }
 
   void _showErrorDialog(String message) {
     showDialog(
@@ -67,6 +34,37 @@ class _LoginPageState extends State<LoginPage> {
         );
       },
     );
+  }
+
+  Future<void> _login() async {
+    final name = _nameController.text.trim();
+    final password = _passwordController.text.trim();
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    final rider = await _riderService.login(name, password);
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (rider != null) {
+      // Save rider ID to SharedPreferences
+      await _riderService.saveRiderId(rider.id);
+
+      // Navigate to RiderPage with rider details
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => RiderPage(
+            rider: rider,
+          ),
+        ),
+      );
+    } else {
+      _showErrorDialog('An error occurred during login. Please try again.');
+    }
   }
 
   @override

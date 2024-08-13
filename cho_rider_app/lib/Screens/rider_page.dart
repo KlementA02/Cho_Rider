@@ -2,8 +2,9 @@ import 'package:cho_rider_app/Screens/earnings_page.dart';
 import 'package:cho_rider_app/Screens/finished_order_page.dart';
 import 'package:cho_rider_app/Screens/new_order_page.dart';
 import 'package:cho_rider_app/Screens/profile_page.dart';
-import 'package:cho_rider_app/models/rider.dart';
 import 'package:flutter/material.dart';
+
+import '../models/rider.dart';
 
 class RiderPage extends StatelessWidget {
   final Rider rider;

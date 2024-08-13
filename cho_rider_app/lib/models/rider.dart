@@ -7,25 +7,28 @@ class Rider {
   final String profilePictureUrl;
   final DateTime joinedDate;
 
-  Rider(
-      {required this.id,
-      required this.name,
-      required this.phoneNumber,
-      required this.password,
-      required this.isActive,
-      required this.profilePictureUrl,
-      required this.joinedDate});
+  Rider({
+    required this.id,
+    required this.name,
+    required this.phoneNumber,
+    required this.password,
+    required this.isActive,
+    required this.profilePictureUrl,
+    required this.joinedDate,
+  });
 
   // Method to create a Rider instance from a map (useful for JSON deserialization)
   factory Rider.fromMap(Map<String, dynamic> map) {
     return Rider(
-        id: map['id'],
-        name: map['name'],
-        phoneNumber: map['contact_number'],
-        password: map['password'],
-        isActive: map['status'],
-        profilePictureUrl: map['image'],
-        joinedDate: map['createdAt']);
+      id: map['id'] as String,
+      name: map['name'] as String,
+      phoneNumber: map['contact_number'] as String? ?? '',
+      password: map['password'] as String? ?? '',
+      isActive: map['status'] as bool? ?? false,
+      profilePictureUrl: map['image'] as String? ?? '',
+      joinedDate: DateTime.parse(
+          map['createdAt'] as String? ?? DateTime.now().toIso8601String()),
+    );
   }
 
   Map<String, dynamic> toMap() {
